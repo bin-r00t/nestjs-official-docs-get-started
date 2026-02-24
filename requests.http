@@ -1,5 +1,5 @@
 ### test manipulate pure response with @Res() decorator
-GET http://localhost:3000/test HTTP/1.1
+GET http://localhost:3000/log-response HTTP/1.1
 
 
 ### log original request object (from express) with @Req() decorator
