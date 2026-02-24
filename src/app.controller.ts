@@ -3,6 +3,9 @@ import { AppService } from './app.service';
 import type { Request, Response } from 'express';
 import { User } from './param-decorators/user.decorator';
 
+// fake user entity for demonstration purposes
+interface UserEntity {}
+
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
@@ -34,9 +37,15 @@ export class AppController {
   }
 
   @Get('log-user')
-  logUser(@User() user: any): string {
+  logUser(@User() user: UserEntity): string {
     console.log('User:', user);
     return user ? JSON.stringify(user) : 'No user information';
+  }
+
+  @Get('log-user-detail')
+  logUserDetail(@User('firstName') firstName: string): string {
+    console.log('User Detail:', firstName);
+    return firstName ? `User First Name: ${firstName}` : 'No user information';
   }
 
   @Get('log-ip')
