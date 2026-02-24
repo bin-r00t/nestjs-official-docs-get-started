@@ -16,7 +16,7 @@ export class AppController {
   }
 
   @Get('log-response')
-  testPureResponse(@Res({ passthrough: true }) response: Response): void {
+  logResponse(@Res({ passthrough: true }) response: Response): void {
     /**
      * Note：当注入 response 对象时，相当于强迫 Nest 将这条 handler 进入了平台相关的模式（在这个例子中是 Express）。
      * 并且需要导入对应的类型（在这个例子中是 express 的 Response 类型）。与此同时带来的好处可能是更大的灵活性，坏处是失去了平台无关的特性。
