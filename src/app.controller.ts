@@ -1,5 +1,6 @@
-import { Controller, Get, Res } from '@nestjs/common';
+import { Controller, Get, Req, Res } from '@nestjs/common';
 import { AppService } from './app.service';
+import type { Request, Response } from 'express';
 
 @Controller()
 export class AppController {
@@ -11,9 +12,17 @@ export class AppController {
   }
 
   @Get('test')
-  testPureResponse(@Res({ passthrough: true }) response): void {
+  testPureResponse(@Res({ passthrough: true }) response: Response): void {
     console.log('testPureResponse called', response);
     response.setHeader('X-Custom-Header', 'CustomValue');
     response.status(200).send('ok!');
+  }
+
+  @Get('log-req')
+  logRequest(@Req() request: Request): string {
+    console.log('Request:', request);
+    return request.headers['user-agent'] || 'No User-Agent header';
+    // return user's IP address
+    // return request.ip || 'No IP address';
   }
 }

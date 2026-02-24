@@ -2,6 +2,7 @@
 GET http://localhost:3000/test HTTP/1.1
 
 
-
+### log original request object (from express) with @Req() decorator
+GET http://localhost:3000/log-req HTTP/1.1
 
 
