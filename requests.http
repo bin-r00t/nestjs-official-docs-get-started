@@ -7,3 +7,7 @@ GET http://localhost:3000/log-req HTTP/1.1
 
 ### log client's IP address with @Ip() decorator
 GET http://localhost:3000/log-ip HTTP/1.1
+
+
+### log user information with custom @User() decorator
+GET http://localhost:3000/log-user HTTP/1.1

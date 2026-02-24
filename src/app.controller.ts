@@ -1,6 +1,7 @@
 import { Controller, Get, Ip, Req, Res } from '@nestjs/common';
 import { AppService } from './app.service';
 import type { Request, Response } from 'express';
+import { User } from './param-decorators/user.decorator';
 
 @Controller()
 export class AppController {
@@ -30,6 +31,12 @@ export class AppController {
     return request.headers['user-agent'] || 'No User-Agent header';
     // return user's IP address
     // return request.ip || 'No IP address';
+  }
+
+  @Get('log-user')
+  logUser(@User() user: any): string {
+    console.log('User:', user);
+    return user ? JSON.stringify(user) : 'No user information';
   }
 
   @Get('log-ip')
