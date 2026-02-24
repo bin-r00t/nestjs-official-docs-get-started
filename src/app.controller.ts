@@ -1,4 +1,4 @@
-import { Controller, Get, Req, Res } from '@nestjs/common';
+import { Controller, Get, Ip, Req, Res } from '@nestjs/common';
 import { AppService } from './app.service';
 import type { Request, Response } from 'express';
 
@@ -24,5 +24,11 @@ export class AppController {
     return request.headers['user-agent'] || 'No User-Agent header';
     // return user's IP address
     // return request.ip || 'No IP address';
+  }
+
+  @Get('log-ip')
+  logIp(@Ip() ip: string): string {
+    console.log('Client IP:', ip);
+    return ip;
   }
 }
