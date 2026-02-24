@@ -1,98 +1,120 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# NestJS Get Started
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A NestJS learning project demonstrating essential framework patterns including controllers, services, custom decorators, and request/response handling.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Introduction
 
-## Description
+This project serves as a practical introduction to NestJS, showcasing various core concepts and patterns used in building scalable server-side applications. It demonstrates how to work with controllers, services, custom parameter decorators, and different response handling strategies.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Features
 
-## Project setup
+- **Controllers & Services**: Clean separation of concerns with NestJS dependency injection
+- **Custom Parameter Decorators**: Implementation of a `@User()` decorator for extracting user information
+- **Request/Response Handling**: Both platform-agnostic and Express-specific patterns
+- **Built-in Decorators**: Usage of `@Req()`, `@Res()`, `@Ip()` and more
+- **Testing Setup**: Unit tests with Jest and end-to-end tests with Supertest
+
+## Prerequisites
+
+- Node.js (v22+ recommended)
+- pnpm package manager
+
+## Installation
 
 ```bash
-$ pnpm install
+pnpm install
 ```
 
-## Compile and run the project
+## Running the App
 
 ```bash
-# development
-$ pnpm run start
+# Development mode with hot-reload
+pnpm run start:dev
 
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+# Production mode
+pnpm run build
+pnpm run start:prod
 ```
 
-## Run tests
+The application will start on `http://localhost:3000` by default.
+
+## Available Endpoints
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/` | Returns "Hello World!" |
+| GET | `/log-response` | Demonstrates manual response handling with custom headers |
+| GET | `/log-req` | Returns User-Agent header from request |
+| GET | `/log-ip` | Returns client IP address |
+| GET | `/log-user` | Demonstrates custom `@User()` decorator (returns full user object) |
+| GET | `/log-user-detail` | Demonstrates extracting specific user property with `@User('firstName')` |
+
+## Development
 
 ```bash
-# unit tests
-$ pnpm run test
+# Build the project
+pnpm run build
 
-# e2e tests
-$ pnpm run test:e2e
+# Run linting
+pnpm run lint
 
-# test coverage
-$ pnpm run test:cov
+# Format code
+pnpm run format
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## Testing
 
 ```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
+# Run unit tests
+pnpm run test
+
+# Run tests in watch mode
+pnpm run test:watch
+
+# Run tests with coverage
+pnpm run test:cov
+
+# Run end-to-end tests
+pnpm run test:e2e
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## Project Structure
 
-## Resources
+```
+src/
+├── main.ts                 # Application entry point
+├── app.module.ts           # Root module
+├── app.controller.ts       # Main controller with demo endpoints
+├── app.service.ts          # Business logic service
+├── app.controller.spec.ts  # Unit tests
+└── param-decorators/
+    └── user.decorator.ts   # Custom @User() decorator
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+## Key Concepts Demonstrated
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### Custom Parameter Decorator
 
-## Support
+The `@User()` decorator ([src/param-decorators/user.decorator.ts](src/param-decorators/user.decorator.ts)) shows how to create reusable parameter decorators:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```typescript
+@User() user: UserEntity           // Returns full user object
+@User('firstName') firstName: string  // Returns specific property
+```
 
-## Stay in touch
+### Response Handling Strategies
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+1. **Standard NestJS** (platform-agnostic): Return values directly
+2. **Express-specific**: Use `@Res({ passthrough: true })` for manual control while maintaining NestJS features
+
+```typescript
+@Get('log-response')
+testPureResponse(@Res({ passthrough: true }) response: Response): void {
+  response.setHeader('X-Custom-Header', 'CustomValue');
+  response.status(200).send('ok!');
+}
+```
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+UNLICENSED
